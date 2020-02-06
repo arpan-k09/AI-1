@@ -1,0 +1,63 @@
+predicates
+	
+	parent(symbol,symbol).
+	father(symbol,symbol).
+	mother(symbol,symbol).
+	brother(symbol,symbol).
+	%sister(symbol).
+	wife(symbol,symbol).	
+	
+	male(symbol).
+	female(symbol).	
+	son(symbol,symbol).
+	grandson(symbol,symbol).
+clauses
+	male(dashrath).	
+	male(ram).
+	male(laxman).
+	male(bharat).
+	male(luv).
+	male(kush).
+	male(shatrughna).
+
+	female(sita).
+	female(urmila).
+	female(kaushalya).
+	female(sumitra).
+	female(kaikeyi).
+
+	parent(kaushalya,ram).
+	parent(dashrath,ram).
+	parent(sumitra,laxman).
+	parent(dashrath,laxman).
+	parent(sumitra,shatrughna).
+	parent(dashrath,shatrughna).
+	
+	parent(kaikeyi,bharat).
+	parent(dashrath,bharat).
+	parent(ram,kush).
+	parent(sita,kush).
+	parent(sita,luv).
+	parent(ram,luv).
+
+	wife(dashrath,kaushalya).	
+	wife(dashrath,sumitra).
+	wife(dashrath,kaikeyi).
+	wife(ram,sita).
+	wife(laxman,urmila).
+
+	
+	mother(X,Y):-female(X),parent(X,Y).
+	father(X,Y):-male(X),parent(X,Y).
+	son(X,Y):-male(X),parent(Y,X).
+	brother(X,Y):-father(Z,X),father(Z,Y),male(X),male(Y),X<>Y.
+	grandson(X,Y):-father(X,Z),father(Z,Y),male(Y).
+
+	%father(dashrath,ram).
+	%mother(kaushalya,ram).
+
+	%father(ram,kush).
+	%mother(sita,kush).
+	
+	%father(ram,luv).
+	%mother(sita,luv).
